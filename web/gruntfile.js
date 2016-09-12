@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-bumpup');
 	grunt.loadNpmTasks('grunt-jslint');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	// Do grunt-related things in here
 	grunt.initConfig({
@@ -48,6 +49,15 @@ module.exports = function(grunt) {
 		    }
 	      }
 	    },
+	    uglify: {
+		    static_mappings: {
+		        // Because these src-dest file mappings are manually specified, every
+		        // time a new file is added or removed, the Gruntfile has to be updated.
+		      	files: [
+		        	{src: 'assets/js/scripts.js', dest: 'dist/scripts.min.js'}
+		      	]
+		  	}   
+		},
 	    watch: {
 	    	options: { livereload: true },
 	      	less: {
@@ -56,7 +66,7 @@ module.exports = function(grunt) {
 	      	},
 	      	scripts: {
 	      		files: ['**/*.js', '*.html'],
-	      		tasks: ['jslint']
+	      		tasks: ['jslint', 'uglify']
 	      	}
 	    },
 	    bumpup: {
@@ -73,8 +83,6 @@ module.exports = function(grunt) {
 			}
 		}
 	});
-
-	grunt.task.registerTask('default', 'jslint');
 	grunt.task.registerTask('default', ['connect','watch']);
 
 };

@@ -15,7 +15,8 @@
     "grunt-express": "~1.0",
     "grunt-bumpup": "~0.6.2",
     "grunt-browser-sync": "~1.5.3",
-    "grunt-jslint": "^1.1.12"
+    "grunt-jslint": "*",
+    "grunt-contrib-uglify": "~2.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
